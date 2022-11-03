@@ -1,2 +1,2 @@
-# battleship_js
+# Battleship game
 battleship game in JavaScript
