@@ -1,3 +1,7 @@
+div{
+    border: 2px solid;
+    border-color: red;
+}
 .cell{
     width: 50px;
     height: 50px;
@@ -12,9 +16,23 @@
     font-weight: bold;
     text-align: center;
 }
-#cellContainer{
+#cellContainerA{
     display: grid;
     grid-template-columns: repeat(10, auto);
-    width: 100px;
-    /* margin: auto; */
+    width: 50%;
+}
+#cellContainerB{
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    width: 50%;
+}
+.gameplay{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    /* width: 100%; */
+}
+.gameplayContainer{
+    margin: 10px;
+    border: 1px solid blue;
 }
