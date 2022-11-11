@@ -1,4 +1,4 @@
-const cells = document.querySelectorAll(".cell");
+const cells = document.querySelectorAll(".cellP");
 const statusText = document.querySelector("#statusText");
 const restartBtn = document.querySelector("#restartBtn");
 const winConditions = [
@@ -35,7 +35,7 @@ function cellClicked(){
 }
 function updateCell(cell, index){
     options[index] = currentPlayer;
-    cell.textContent = currentPlayer;
+    cell.textContent = index;
 }
 function changePlayer(){
     currentPlayer = (currentPlayer == "X") ? "O" : "X";

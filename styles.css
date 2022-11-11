@@ -3,14 +3,13 @@ div{
     border-color: red;
 }
 
-.cell{
+.cellP, .cellO{
     position: relative;
     width: 100%;
     height: 0px;
     padding-bottom: 100%;
     border: 1px solid;
-    line-height: 10px;
-    font-size: 10px;
+    font-size: 150%;
     cursor: pointer;
     text-align: center;
 }
