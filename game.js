@@ -1,4 +1,5 @@
-const cells = document.querySelectorAll(".cellP");
+const cellsP = document.querySelectorAll(".cellP");
+const cellsO = document.querySelectorAll(".cellO");
 const statusText = document.querySelector("#statusText");
 const restartBtn = document.querySelector("#restartBtn");
 const winConditions = [
@@ -19,7 +20,8 @@ let running = false;
 initializeGame();
 
 function initializeGame(){
-    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    cellsP.forEach(cell => cell.addEventListener("click", cellClicked));
+    cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
     restartBtn.addEventListener("click", restartGame);
     statusText.textContent = `${currentPlayer}'s turn`;
     running = true;
@@ -27,7 +29,7 @@ function initializeGame(){
 function cellClicked(){
     const cellIndex = this.getAttribute("cellIndex");
 
-    if(options[cellIndex] != "" || !running){
+    if(!running){
         return;
     }
     updateCell(this, cellIndex);
@@ -35,7 +37,7 @@ function cellClicked(){
 }
 function updateCell(cell, index){
     options[index] = currentPlayer;
-    cell.textContent = index;
+    cell.style.backgroundColor = "#000";
 }
 function changePlayer(){
     currentPlayer = (currentPlayer == "X") ? "O" : "X";
@@ -75,7 +77,8 @@ function restartGame(){
     currentPlayer = "X";
     options = ["", "", "", "", "", "", "", "", ""];
     statusText.textContent = `${currentPlayer}'s turn`;
-    cells.forEach(cell => cell.textContent = "");
+    cellsP.forEach(cell => cell.style.backgroundColor = "#FFF");
+    cellsO.forEach(cell => cell.style.backgroundColor = "#FFF");
     running = true;
 
 }
