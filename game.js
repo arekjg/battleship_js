@@ -1,10 +1,16 @@
-// const cellsP = document.querySelectorAll(".cellP");
+const cellsP = document.querySelectorAll(".cellP");
 const cellsO = document.querySelectorAll(".cellO");
 const statusText = document.querySelector("#statusText");
 const restartBtn = document.querySelector("#restartBtn");
 
-let shipsPlayer = [0, 1, 2, 3, 4, 38, 48, 58];
-let shipsOpp = [10, 11, 12, 13 , 14, 70, 80, 90];
+const lastMove =
+{
+    hit: false,
+    sunk: false
+};
+
+let shipsPlayer = ["0", "1", "2", "3", "4", "38", "48", "58"];
+let shipsOpp = ["10", "11", "12", "13", "14", "70", "80", "90"];
 
 let ships = 30;
 let missedPlayer = 0;
@@ -20,22 +26,22 @@ function initializeGame()
 {
     // cellsP.forEach(cell => cell.addEventListener("click", cellClicked));
     cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
-    // cellsO.forEach(cell => cell.placeOppShips())
-
+    placePlayerShips();
 
     restartBtn.addEventListener("click", restartGame);
-    statusText.textContent = `You start`;
+    statusText.textContent = "You start";
     running = true;
 }
-// function placeOppShips()
-// {
-//     const cellIndex = this.getAttribute("cellIndex");
-
-//     if (shipsOpp.includes(cellIndex))
-//     {
-//         this.style.backgroundColor = "#394E62";
-//     }
-// }
+function placePlayerShips()
+{
+    cellsP.forEach(cell =>
+        {
+            if(shipsPlayer.includes(cell.getAttribute("cellIndex")))
+            {
+                cell.style.backgroundColor = "#394E62";
+            }
+        });
+}
 function cellClicked()
 {
     const cellIndex = this.getAttribute("cellIndex");
@@ -50,7 +56,14 @@ function cellClicked()
 }
 function updateCell(cell)
 {
-    cell.style.backgroundColor = "#000";
+    if(shipsOpp.includes(cell.getAttribute("cellIndex")))
+    {
+        cell.style.backgroundColor = "#f44336";
+    }
+    else
+    {
+        cell.style.backgroundColor = "#000";
+    }
     cell.style.cursor = "default";
 }
 function changePlayer()
@@ -69,12 +82,12 @@ function checkWinner()
 {
     if(hitPlayer == ships)
     {
-        statusText.textContent = `You win!`;
+        statusText.textContent = "You win!";
         running = false;
     }
     else if(hitOpp == ships)
     {
-        statusText.textContent = `You lose!`;
+        statusText.textContent = "You lose!";
         running = false;
     }
     else
@@ -85,8 +98,9 @@ function checkWinner()
 function restartGame()
 {
     isPlayerTurn = true;
-    statusText.textContent = `You start`;
-    // cellsP.forEach(cell => cell.style.backgroundColor = "#FFF");
+    statusText.textContent = "You start";
     cellsO.forEach(cell => cell.style.backgroundColor = "#FFF");
+    cellsO.forEach(cell => cell.style.cursor = "pointer");
+    placePlayerShips();
     running = true;
 }
