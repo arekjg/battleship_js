@@ -6,17 +6,19 @@ const restartBtn = document.querySelector("#restartBtn");
 const lastMove =
 {
     hit: false,
-    sunk: false
+    sunk: false,
+    lastIndex: 100
 };
 
-let shipsPlayer = ["0", "1", "2", "3", "4", "38", "48", "58"];
-let shipsOpp = ["10", "11", "12", "13", "14", "70", "80", "90"];
+// ship cells: player and opponent
+let shipsP = ["0", "1", "2", "3", "4", "38", "48", "58"];
+let shipsO = ["10", "11", "12", "13", "14", "70", "80", "90"];
 
-let ships = 30;
-let missedPlayer = 0;
-let missedOpp = 0;
-let hitPlayer = 0;
-let hitOpp = 0;
+let ships = 8;          // number of ship cells each player has
+let hitP = [];          // hit cells on player grid
+let hitO = [];          // hit cells on opponent grid
+let missedP = [];       // missed cells on player grid
+let missedO = [];       // missed cells on opponent grid
 let isPlayerTurn = true;
 let running = false;
 
@@ -36,7 +38,7 @@ function placePlayerShips()
 {
     cellsP.forEach(cell =>
         {
-            if(shipsPlayer.includes(cell.getAttribute("cellIndex")))
+            if(shipsP.includes(cell.getAttribute("cellIndex")))
             {
                 cell.style.backgroundColor = "#394E62";
             }
@@ -45,24 +47,30 @@ function placePlayerShips()
 function cellClicked()
 {
     const cellIndex = this.getAttribute("cellIndex");
-    // let isHit = false;
 
     if(!running)
     {
         return;
     }
-    updateCell(this);
+    // if cell is already clicked
+    if(hitO.includes(cellIndex) || missedO.includes(cellIndex))
+    {
+        return;
+    }
+    updateCell(this, cellIndex);
     checkWinner();
 }
-function updateCell(cell)
+function updateCell(cell, index)
 {
-    if(shipsOpp.includes(cell.getAttribute("cellIndex")))
+    if(shipsO.includes(index))
     {
         cell.style.backgroundColor = "#f44336";
+        hitO.push(index);
     }
     else
     {
         cell.style.backgroundColor = "#000";
+        missedO.push(index);
     }
     cell.style.cursor = "default";
 }
@@ -80,12 +88,12 @@ function changePlayer()
 }
 function checkWinner()
 {
-    if(hitPlayer == ships)
+    if(hitO.length == ships)
     {
         statusText.textContent = "You win!";
         running = false;
     }
-    else if(hitOpp == ships)
+    else if(hitP.length == ships)
     {
         statusText.textContent = "You lose!";
         running = false;
@@ -101,6 +109,10 @@ function restartGame()
     statusText.textContent = "You start";
     cellsO.forEach(cell => cell.style.backgroundColor = "#FFF");
     cellsO.forEach(cell => cell.style.cursor = "pointer");
+    hitP = [];
+    hitO = [];
+    missedP = [];
+    missedO = [];
     placePlayerShips();
     running = true;
 }
