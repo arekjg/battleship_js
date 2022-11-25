@@ -6,12 +6,12 @@ const restartBtn = document.querySelector("#restartBtn");
 const lastMove =
 {
     hit: false,
-    sunk: false,
     lastIndex: 100
 };
 
 // ship cells: player and opponent
-let shipsP = ["0", "1", "2", "3", "4", "38", "48", "58"];
+// let shipsP = ["0", "1", "2", "3", "4", "38", "48", "58"];
+let shipsP = [];
 let shipsO = ["10", "11", "12", "13", "14", "70", "80", "90"];
 
 let ships = 8;          // number of ship cells each player has
@@ -34,6 +34,40 @@ function initializeGame()
     statusText.textContent = "You start";
     running = true;
 }
+function drawShips()
+{
+    let x;      // random starting cell
+    let dir;    // random direction (0-up, 1-right, 2-down, 3-left)
+
+    // 5-cell ship
+    x = Math.floor(Math.random() * 100);
+    shipsP.push(x.toString());
+    move = moveCell();
+    
+
+
+}
+function moveCell()
+{
+    let dir = Math.floor(Math.random() * 4);
+    let move;
+    switch(dir)
+    {
+        case 0:
+            move = -10;
+            break;
+        case 1:
+            move = 1;
+            break;
+        case 2:
+            move = 10;
+            break;
+        case 3:
+            move = -1;
+            break;
+    }
+    return move;
+}
 function placePlayerShips()
 {
     cellsP.forEach(cell =>
@@ -46,6 +80,7 @@ function placePlayerShips()
 }
 function cellClicked()
 {
+    console.log(missedO);
     const cellIndex = this.getAttribute("cellIndex");
 
     if(!running)
