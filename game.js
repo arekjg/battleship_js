@@ -33,11 +33,11 @@ const shipArray =
 let shipsP = [];
 let shipsO = [];
 
-let ships = 30;         // number of ship cells each player has
-let hitP = [];          // hit cells on player grid
-let hitO = [];          // hit cells on opponent grid
-let missedP = [];       // missed cells on player grid
-let missedO = [];       // missed cells on opponent grid
+let ships = 30;             // number of ship cells each player has
+let hitP = [];              // hit cells on player grid
+let hitO = [];              // hit cells on opponent grid
+let missedP = [];           // missed cells on player grid
+let missedO = [];           // missed cells on opponent grid
 let isPlayerTurn = true;
 let running = false;
 
@@ -188,15 +188,20 @@ function restartGame()
 {
     isPlayerTurn = true;
     statusText.textContent = "You start";
+    cellsP.forEach(cell => cell.style.backgroundColor = "#FFF")
     cellsO.forEach(cell => cell.style.backgroundColor = "#FFF");
     cellsO.forEach(cell => cell.style.cursor = "pointer");
     hitP = [];
     hitO = [];
     missedP = [];
     missedO = [];
+    shipsP = [];
+    shipsO = [];
     placeOpponentShips();
     placePlayerShips();
     running = true;
 }
 
-// TODO: CREATE OPPONENT'S MOVEMENT FUNCTION
+// TODO:
+// CREATE OPPONENT'S MOVEMENT FUNCTION
+// FIX SHIPS GENERATOR - IT DOES NOT CREATE SHIPS ON FIRST AND LAST COLUMN
