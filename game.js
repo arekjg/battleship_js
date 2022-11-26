@@ -9,12 +9,31 @@ const lastMove =
     lastIndex: 100
 };
 
-// ship cells: player and opponent
-// let shipsP = ["0", "1", "2", "3", "4", "38", "48", "58"];
-let shipsP = [];
-let shipsO = ["10", "11", "12", "13", "14", "70", "80", "90"];
+const shipArray = 
+[
+    {
+        name: '5-cell',
+        directions: [[0, 1, 2, 3, 4], [0, 10, 20, 30, 40]]
+    },
+    {
+        name: '4-cell',
+        directions: [[0, 1, 2, 3], [0, 10, 20, 30]]
+    },
+    {
+        name: '3-cell',
+        directions: [[0, 1, 2], [0, 10, 20]]
+    },
+    {
+        name: '2-cell',
+        directions: [[0, 1], [0, 10]]
+    }
+];
 
-let ships = 8;          // number of ship cells each player has
+// ship cells: player and opponent
+let shipsP = [];
+let shipsO = [];
+
+let ships = 30;         // number of ship cells each player has
 let hitP = [];          // hit cells on player grid
 let hitO = [];          // hit cells on opponent grid
 let missedP = [];       // missed cells on player grid
@@ -28,48 +47,62 @@ function initializeGame()
 {
     // cellsP.forEach(cell => cell.addEventListener("click", cellClicked));
     cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
+    placeOpponentShips();
     placePlayerShips();
 
     restartBtn.addEventListener("click", restartGame);
     statusText.textContent = "You start";
     running = true;
 }
-function drawShips()
+function generateShips(ship, isPlayer)
 {
-    let x;      // random starting cell
-    let dir;    // random direction (0-up, 1-right, 2-down, 3-left)
+    let randomDirection = Math.floor(Math.random() * 2);
+    let current = ship.directions[randomDirection];
+    let direction = randomDirection === 0 ? 1 : 10;
+    let randomStart = Math.abs(Math.floor(Math.random() * 100 - (ship.directions[0].length * direction)));
 
-    // 5-cell ship
-    x = Math.floor(Math.random() * 100);
-    shipsP.push(x.toString());
-    move = moveCell();
-    
+    const isAtRightEdge = current.some(index => (randomStart + index) % 10 === 9);
+    const isAtLeftEdge = current.some(index => (randomStart + index) % 10 === 0);
 
-
-}
-function moveCell()
-{
-    let dir = Math.floor(Math.random() * 4);
-    let move;
-    switch(dir)
+    // player's or opponent's ships
+    if(isPlayer)
     {
-        case 0:
-            move = -10;
-            break;
-        case 1:
-            move = 1;
-            break;
-        case 2:
-            move = 10;
-            break;
-        case 3:
-            move = -1;
-            break;
+        const isTaken = current.some(index => shipsP.includes((randomStart + index).toString()));
+        if(!isTaken && !isAtRightEdge && !isAtLeftEdge)
+        {
+            current.forEach(index => shipsP.push((randomStart + index).toString()));
+        }
+        else
+        {
+            generateShips(ship, isPlayer);
+        }
     }
-    return move;
+    else
+    {
+        const isTaken = current.some(index => shipsO.includes((randomStart + index).toString()));
+        if(!isTaken && !isAtRightEdge && !isAtLeftEdge)
+        {
+            current.forEach(index => shipsO.push((randomStart + index).toString()));
+        }
+        else
+        {
+            generateShips(ship, isPlayer);
+        }
+    }
 }
 function placePlayerShips()
 {
+    generateShips(shipArray[0], true);
+    generateShips(shipArray[1], true);
+    generateShips(shipArray[1], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+
     cellsP.forEach(cell =>
         {
             if(shipsP.includes(cell.getAttribute("cellIndex")))
@@ -77,6 +110,19 @@ function placePlayerShips()
                 cell.style.backgroundColor = "#394E62";
             }
         });
+}
+function placeOpponentShips()
+{
+    generateShips(shipArray[0], false);
+    generateShips(shipArray[1], false);
+    generateShips(shipArray[1], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
 }
 function cellClicked()
 {
@@ -109,7 +155,7 @@ function updateCell(cell, index)
     }
     cell.style.cursor = "default";
 }
-function changePlayer()
+function changePlayer()     // TODO: UPDATE & FIX FUNCTION
 {
     isPlayerTurn = (isPlayerTurn) ? false : true;
     if(isPlayerTurn)
@@ -148,6 +194,9 @@ function restartGame()
     hitO = [];
     missedP = [];
     missedO = [];
+    placeOpponentShips();
     placePlayerShips();
     running = true;
 }
+
+// TODO: CREATE OPPONENT'S MOVEMENT FUNCTION
