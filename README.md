@@ -1,2 +1,3 @@
 # Battleship game
-battleship game in JavaScript
+
+Final project of Harvard's CS50 Introduction to Computer Science.
