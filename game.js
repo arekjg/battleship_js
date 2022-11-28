@@ -33,7 +33,7 @@ const shipArray =
 let shipsP = [];
 let shipsO = [];
 
-let ships = 30;             // number of ship cells each player has
+let ships = 5;             // number of ship cells each player has
 let hitP = [];              // hit cells on player grid
 let hitO = [];              // hit cells on opponent grid
 let missedP = [];           // missed cells on player grid
@@ -93,15 +93,15 @@ function generateShips(ship, isPlayer)
 function placePlayerShips()
 {
     generateShips(shipArray[0], true);
-    generateShips(shipArray[1], true);
-    generateShips(shipArray[1], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
+    // generateShips(shipArray[1], true);
+    // generateShips(shipArray[1], true);
+    // generateShips(shipArray[2], true);
+    // generateShips(shipArray[2], true);
+    // generateShips(shipArray[2], true);
+    // generateShips(shipArray[3], true);
+    // generateShips(shipArray[3], true);
+    // generateShips(shipArray[3], true);
+    // generateShips(shipArray[3], true);
 
     cellsP.forEach(cell =>
         {
@@ -114,19 +114,19 @@ function placePlayerShips()
 function placeOpponentShips()
 {
     generateShips(shipArray[0], false);
-    generateShips(shipArray[1], false);
-    generateShips(shipArray[1], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
+    // generateShips(shipArray[1], false);
+    // generateShips(shipArray[1], false);
+    // generateShips(shipArray[2], false);
+    // generateShips(shipArray[2], false);
+    // generateShips(shipArray[2], false);
+    // generateShips(shipArray[3], false);
+    // generateShips(shipArray[3], false);
+    // generateShips(shipArray[3], false);
+    // generateShips(shipArray[3], false);
 }
 function cellClicked()
 {
-    console.log(missedO);
+    console.log(missedO); // DELETE LATER
     const cellIndex = this.getAttribute("cellIndex");
 
     if(!running)
@@ -165,7 +165,49 @@ function changePlayer()     // TODO: UPDATE & FIX FUNCTION
     else
     {
         statusText.textContent = "Wait for your turn";
+        let oppMoveTime;
+        oppMoveTime = setTimeout(opponentMove, 1000);
     }
+}
+function opponentMove()
+{
+    let oppShoot = (Math.abs(Math.floor(Math.random() * 100))).toString();
+    if(!running)
+    {
+        return;
+    }
+
+    if(missedP.includes(oppShoot) || hitP.includes(oppShoot))
+    {
+        opponentMove();
+    }
+    else
+    {
+        if(shipsP.includes(oppShoot))
+        {
+            hitP.push(oppShoot);
+            cellsP.forEach(cell =>
+            {
+                if(hitP.includes(cell.getAttribute("cellIndex")))
+                {
+                    cell.style.backgroundColor = "#f44336";
+                }
+            });
+        }
+        else
+        {
+            missedP.push(oppShoot);
+            cellsP.forEach(cell =>
+            {
+                if(missedP.includes(cell.getAttribute("cellIndex")))
+                {
+                    cell.style.backgroundColor = "#000";
+                }
+            });
+        }
+    }
+
+    changePlayer();
 }
 function checkWinner()
 {
@@ -204,4 +246,4 @@ function restartGame()
 
 // TODO:
 // CREATE OPPONENT'S MOVEMENT FUNCTION
-// FIX SHIPS GENERATOR - IT DOES NOT CREATE SHIPS ON FIRST AND LAST COLUMN
+// FIX BUGS IN: OPPONENT MOVEMENT FUNCTION, SETTIMEOUT, CHANGING PLAYER, CHECKING WINNER
