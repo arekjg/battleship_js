@@ -61,8 +61,8 @@ function generateShips(ship, isPlayer)
     let direction = randomDirection === 0 ? 1 : 10;
     let randomStart = Math.abs(Math.floor(Math.random() * 100 - (ship.directions[0].length * direction)));
 
-    const isAtRightEdge = current.some(index => (randomStart + index) % 10 === 9);
-    const isAtLeftEdge = current.some(index => (randomStart + index) % 10 === 0);
+    const isAtRightEdge = current.some(index => (randomStart + index) % 10 === 10);
+    const isAtLeftEdge = current.some(index => (randomStart + index) % 10 === 9);
 
     // player's or opponent's ships
     if(isPlayer)
