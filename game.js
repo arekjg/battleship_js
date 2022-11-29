@@ -33,7 +33,7 @@ const shipArray =
 let shipsP = [];
 let shipsO = [];
 
-let ships = 5;             // number of ship cells each player has
+let ships = 30;             // number of ship cells each player has
 let hitP = [];              // hit cells on player grid
 let hitO = [];              // hit cells on opponent grid
 let missedP = [];           // missed cells on player grid
@@ -45,7 +45,6 @@ initializeGame();
 
 function initializeGame()
 {
-    // cellsP.forEach(cell => cell.addEventListener("click", cellClicked));
     cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
     placeOpponentShips();
     placePlayerShips();
@@ -93,15 +92,15 @@ function generateShips(ship, isPlayer)
 function placePlayerShips()
 {
     generateShips(shipArray[0], true);
-    // generateShips(shipArray[1], true);
-    // generateShips(shipArray[1], true);
-    // generateShips(shipArray[2], true);
-    // generateShips(shipArray[2], true);
-    // generateShips(shipArray[2], true);
-    // generateShips(shipArray[3], true);
-    // generateShips(shipArray[3], true);
-    // generateShips(shipArray[3], true);
-    // generateShips(shipArray[3], true);
+    generateShips(shipArray[1], true);
+    generateShips(shipArray[1], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
 
     cellsP.forEach(cell =>
         {
@@ -114,22 +113,25 @@ function placePlayerShips()
 function placeOpponentShips()
 {
     generateShips(shipArray[0], false);
-    // generateShips(shipArray[1], false);
-    // generateShips(shipArray[1], false);
-    // generateShips(shipArray[2], false);
-    // generateShips(shipArray[2], false);
-    // generateShips(shipArray[2], false);
-    // generateShips(shipArray[3], false);
-    // generateShips(shipArray[3], false);
-    // generateShips(shipArray[3], false);
-    // generateShips(shipArray[3], false);
+    generateShips(shipArray[1], false);
+    generateShips(shipArray[1], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[2], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
+    generateShips(shipArray[3], false);
 }
 function cellClicked()
 {
-    console.log(missedO); // DELETE LATER
     const cellIndex = this.getAttribute("cellIndex");
 
     if(!running)
+    {
+        return;
+    }
+    if(!isPlayerTurn)
     {
         return;
     }
@@ -155,7 +157,7 @@ function updateCell(cell, index)
     }
     cell.style.cursor = "default";
 }
-function changePlayer()     // TODO: UPDATE & FIX FUNCTION
+function changePlayer()
 {
     isPlayerTurn = (isPlayerTurn) ? false : true;
     if(isPlayerTurn)
@@ -165,46 +167,47 @@ function changePlayer()     // TODO: UPDATE & FIX FUNCTION
     else
     {
         statusText.textContent = "Wait for your turn";
+        
         let oppMoveTime;
         oppMoveTime = setTimeout(opponentMove, 1000);
     }
 }
 function opponentMove()
 {
-    let oppShoot = (Math.abs(Math.floor(Math.random() * 100))).toString();
+    let oppShoot;
+    
     if(!running)
     {
         return;
     }
 
-    if(missedP.includes(oppShoot) || hitP.includes(oppShoot))
+    do
     {
-        opponentMove();
+        oppShoot = (Math.abs(Math.floor(Math.random() * 100))).toString();
+    }
+    while(missedP.includes(oppShoot) || hitP.includes(oppShoot));
+
+    if(shipsP.includes(oppShoot))
+    {
+        hitP.push(oppShoot);
+        cellsP.forEach(cell =>
+        {
+            if(hitP.includes(cell.getAttribute("cellIndex")))
+            {
+                cell.style.backgroundColor = "#f44336";
+            }
+        });
     }
     else
     {
-        if(shipsP.includes(oppShoot))
+        missedP.push(oppShoot);
+        cellsP.forEach(cell =>
         {
-            hitP.push(oppShoot);
-            cellsP.forEach(cell =>
+            if(missedP.includes(cell.getAttribute("cellIndex")))
             {
-                if(hitP.includes(cell.getAttribute("cellIndex")))
-                {
-                    cell.style.backgroundColor = "#f44336";
-                }
-            });
-        }
-        else
-        {
-            missedP.push(oppShoot);
-            cellsP.forEach(cell =>
-            {
-                if(missedP.includes(cell.getAttribute("cellIndex")))
-                {
-                    cell.style.backgroundColor = "#000";
-                }
-            });
-        }
+                cell.style.backgroundColor = "#000";
+            }
+        });
     }
 
     changePlayer();
@@ -245,5 +248,6 @@ function restartGame()
 }
 
 // TODO:
-// CREATE OPPONENT'S MOVEMENT FUNCTION
-// FIX BUGS IN: OPPONENT MOVEMENT FUNCTION, SETTIMEOUT, CHANGING PLAYER, CHECKING WINNER
+// FIX GENERATING SHIPS - IT DOESN'T WORK IN LAST COLUMN
+// FINISH LAST MOVEMENT FUNCTIONALITY
+// FIX CHECK WINNER FUNCTION - IF ENEMEY WINS, THE GAME ENDS AFTER PLAYER'S MOVE
