@@ -5,6 +5,3 @@ for (var i = 0; i < 10; i++)
         document.getElementById("cellContainerOpponent").innerHTML += '<div cellIndex="' + (j + (i * 10)) + '" class="cellO"></div>';
     }
 }
-
-// to change later:
-// cellIndex=o' ...
