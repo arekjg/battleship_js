@@ -61,7 +61,7 @@ function generateShips(ship, isPlayer)
     let randomStart = Math.abs(Math.floor(Math.random() * 100 - (ship.directions[0].length * direction)));
 
     const isAtRightEdge = current.some(index => (randomStart + index) % 10 === 10);
-    const isAtLeftEdge = current.some(index => (randomStart + index) % 10 === 9);
+    const isAtLeftEdge = current.some(index => (randomStart + index + 1) % 10 === 0);
 
     // player's or opponent's ships
     if(isPlayer)
@@ -93,14 +93,14 @@ function placePlayerShips()
 {
     generateShips(shipArray[0], true);
     generateShips(shipArray[1], true);
-    generateShips(shipArray[1], true);
+    // generateShips(shipArray[1], true);
     generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
+    // generateShips(shipArray[2], true);
+    // generateShips(shipArray[2], true);
     generateShips(shipArray[3], true);
     generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
+    // generateShips(shipArray[3], true);
+    // generateShips(shipArray[3], true);
 
     cellsP.forEach(cell =>
         {
@@ -248,6 +248,6 @@ function restartGame()
 }
 
 // TODO:
-// FIX GENERATING SHIPS - IT DOESN'T WORK IN LAST COLUMN
+// CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
 // FIX CHECK WINNER FUNCTION - IF ENEMEY WINS, THE GAME ENDS AFTER PLAYER'S MOVE
