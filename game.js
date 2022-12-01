@@ -93,14 +93,14 @@ function placePlayerShips()
 {
     generateShips(shipArray[0], true);
     generateShips(shipArray[1], true);
-    // generateShips(shipArray[1], true);
+    generateShips(shipArray[1], true);
     generateShips(shipArray[2], true);
-    // generateShips(shipArray[2], true);
-    // generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
+    generateShips(shipArray[2], true);
     generateShips(shipArray[3], true);
     generateShips(shipArray[3], true);
-    // generateShips(shipArray[3], true);
-    // generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
+    generateShips(shipArray[3], true);
 
     cellsP.forEach(cell =>
         {
@@ -211,7 +211,7 @@ function opponentMove()
         });
     }
 
-    changePlayer();
+    checkWinner();
 }
 function checkWinner()
 {
@@ -251,6 +251,5 @@ function restartGame()
 // TODO:
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
-// FIX CHECK WINNER FUNCTION - IF ENEMEY WINS, THE GAME ENDS AFTER PLAYER'S MOVE
 // ADD POSSIBILITY TO CHOOSE HOW MANY SHIPS WILL BE ON THE BOARD (BEFORE STARTING THE GAME) - RESTART BUTTON SHOULD OPEN STARTING SCREEN (CHANGE CURRENT RESTART BUTTON TO "SHUFFLE AGAIN" BUTTON)
 // SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
