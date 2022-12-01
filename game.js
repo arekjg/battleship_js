@@ -194,6 +194,7 @@ function opponentMove()
         {
             if(hitP.includes(cell.getAttribute("cellIndex")))
             {
+                // statusText.textContent = "Your ship has been hit!";
                 cell.style.backgroundColor = "#f44336";
             }
         });
@@ -251,3 +252,5 @@ function restartGame()
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
 // FIX CHECK WINNER FUNCTION - IF ENEMEY WINS, THE GAME ENDS AFTER PLAYER'S MOVE
+// ADD POSSIBILITY TO CHOOSE HOW MANY SHIPS WILL BE ON THE BOARD (BEFORE STARTING THE GAME) - RESTART BUTTON SHOULD OPEN STARTING SCREEN (CHANGE CURRENT RESTART BUTTON TO "SHUFFLE AGAIN" BUTTON)
+// SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
