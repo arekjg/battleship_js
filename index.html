@@ -8,31 +8,47 @@
     <title>Battleship</title>
 </head>
 <body>
-
     
     <div id="game">
         <h1>Battleship</h1>
-        <h2 id="statusText"></h2>
     </div>
 
-    <div class="gameplay">
-        <div id="cellContainerPlayer">
-            <script src="grid_player.js"></script>
-        </div>
-
-        <div id="cellContainerOpponent">
-            <script src="grid_opponent.js"></script>
-        </div>
-    </div>
-
-
-
-    <br>
     <div id="game">
-        <button id="restartBtn" class="restartBtn">START NEW GAME</button>
+        <img class="indexImg" src="img/battleship.png" alt="battleship">
     </div>
 
-    <script src="game.js"></script>
+    <div id="game">
+        <select id="list-5cell" class="dropDown">
+            <option value="0">0</option>
+            <option value="1" selected="selected">1</option>
+        </select>
+        <select id="list-4cell" class="dropDown">
+            <option value="0">0</option>
+            <option value="1" selected="selected">1</option>
+            <option value="2">2</option>
+        </select>
+        <select id="list-3cell" class="dropDown">
+            <option value="0">0</option>
+            <option value="1" selected="selected">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <select id="list-2cell" class="dropDown">
+            <option value="0">0</option>
+            <option value="1" selected="selected">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+    </div>
+
+    <div id="game">
+        <a href="game.html"><button class="gameBtn">START</button></a>
+    </div>
+
+
+
 
 </body>
 </html>

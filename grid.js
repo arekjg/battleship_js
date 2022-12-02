@@ -1,7 +1,6 @@
-for (var i = 0; i < 10; i++)
+function getSelectValue()
 {
-    for (var j = 0; j < 10; j++)
-    {
-        document.getElementById("cellContainer").innerHTML += '<div cellIndex="' + (j + (i * 10)) + '" class="cell"></div>';
-    }
+    var selectedValue = document.getElementById("list").value;
+    console.log(selectedValue);
 }
+getSelectValue();

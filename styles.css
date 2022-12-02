@@ -31,7 +31,7 @@ div{
     grid-template-columns: 1fr 1fr;
     grid-gap: 5%;
 }
-.restartBtn {
+.gameBtn {
 	box-shadow:inset 0px 0px 0px 0px #dcecfb;
 	background:linear-gradient(to bottom, #bddbfa 5%, #1c6bba 100%);
 	background-color:#bddbfa;
@@ -47,11 +47,22 @@ div{
 	text-decoration:none;
 	text-shadow:0px 1px 0px #436180;
 }
-.restartBtn:hover {
+.gameBtn:hover {
 	background:linear-gradient(to bottom, #1c6bba 5%, #bddbfa 100%);
 	background-color:#1c6bba;
 }
-.restartBtn:active {
+.gameBtn:active {
 	position:relative;
 	top:1px;
+}
+.indexImg{
+    width: 120%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    position: relative;
+    right: -100px;
+    z-index: 99;
+}
+.dropDown{
+    width: 40px;
 }

@@ -1,7 +1,7 @@
 const cellsP = document.querySelectorAll(".cellP");
 const cellsO = document.querySelectorAll(".cellO");
 const statusText = document.querySelector("#statusText");
-const restartBtn = document.querySelector("#restartBtn");
+const shuffleBtn = document.querySelector("#shuffleBtn");
 
 const lastMove =
 {
@@ -49,7 +49,7 @@ function initializeGame()
     placeOpponentShips();
     placePlayerShips();
 
-    restartBtn.addEventListener("click", restartGame);
+    shuffleBtn.addEventListener("click", restartGame);
     statusText.textContent = "You start";
     running = true;
 }
