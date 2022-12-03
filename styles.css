@@ -30,6 +30,8 @@ div{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 .gameBtn {
 	box-shadow:inset 0px 0px 0px 0px #dcecfb;
