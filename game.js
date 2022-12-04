@@ -2,6 +2,8 @@ const cellsP = document.querySelectorAll(".cellP");
 const cellsO = document.querySelectorAll(".cellO");
 const statusText = document.querySelector("#statusText");
 const shuffleBtn = document.querySelector("#shuffleBtn");
+const shipsLeftPlayer = document.querySelector("#shipsLeftPlayer");
+const shipsLeftOpponent = document.querySelector("#shipsLeftOpponent");
 
 const lastMove =
 {
@@ -53,17 +55,14 @@ initializeGame();
 
 function initializeGame()
 {
-    console.log(ship5cellAmount);
-    console.log(ship4cellAmount);
-    console.log(ship3cellAmount);
-    console.log(ship2cellAmount);
-
     cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
     placeOpponentShips();
     placePlayerShips();
 
     shuffleBtn.addEventListener("click", restartGame);
     statusText.textContent = "You start";
+    shipsLeftPlayer.textContent = ships;
+    shipsLeftOpponent.textContent = ships;
     running = true;
 }
 function generateShips(ship, isPlayer)
@@ -254,6 +253,11 @@ function checkWinner()
     {
         changePlayer();
     }
+
+    shipsLeftPlayer.textContent = ships - hitP.length;
+    shipsLeftOpponent.textContent = ships - hitO.length;
+
+
 }
 function restartGame()
 {
@@ -276,6 +280,6 @@ function restartGame()
 // TODO:
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
-// ADD POSSIBILITY TO CHOOSE HOW MANY SHIPS WILL BE ON THE BOARD (BEFORE STARTING THE GAME) - RESTART BUTTON SHOULD OPEN STARTING SCREEN (CHANGE CURRENT RESTART BUTTON TO "SHUFFLE AGAIN" BUTTON)
 // SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
 // ADD A LABEL FOR EACH GRID THAT DISPLAYS NUMBER OF SHIPS LEFT
+// IMPROVE APPEARANCE (CSS)

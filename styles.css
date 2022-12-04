@@ -2,7 +2,6 @@ div{
     border: 2px solid;
     border-color: red;
 }
-
 .cellP, .cellO{
     position: relative;
     width: 100%;
@@ -13,25 +12,23 @@ div{
     cursor: pointer;
     text-align: center;
 }
-
 #game{
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     text-align: center;
 }
-
 #cellContainerPlayer,#cellContainerOpponent{
     display: grid;
     grid-template-columns: repeat(10, auto);
     width: 100%;
 }
-
 .gameplay{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 5%;
+    grid-gap: 2%;
     padding-left: 4%;
     padding-right: 4%;
+    padding-bottom: 1%;
 }
 .gameBtn {
 	box-shadow:inset 0px 0px 0px 0px #dcecfb;
@@ -67,4 +64,8 @@ div{
 }
 .dropDown{
     width: 40px;
+}
+.label{
+    width: 100%;
+    text-align: center;
 }
