@@ -29,22 +29,35 @@ const shipArray =
     }
 ];
 
+// amount of ships of each type
+let ship5cellAmount = sessionStorage.getItem("ship5cell");
+let ship4cellAmount = sessionStorage.getItem("ship4cell");
+let ship3cellAmount = sessionStorage.getItem("ship3cell");
+let ship2cellAmount = sessionStorage.getItem("ship2cell");
+
 // ship cells: player and opponent
 let shipsP = [];
 let shipsO = [];
 
-let ships = 30;             // number of ship cells each player has
+// number of ship cells each player has
+let ships = 5 * ship5cellAmount + 4 * ship4cellAmount + 3 * ship3cellAmount + 2 * ship2cellAmount;
 let hitP = [];              // hit cells on player grid
 let hitO = [];              // hit cells on opponent grid
 let missedP = [];           // missed cells on player grid
 let missedO = [];           // missed cells on opponent grid
-let isPlayerTurn = true;
-let running = false;
+let isPlayerTurn = true;    // is it player's turn
+let running = false;        // is game is running
+
 
 initializeGame();
 
 function initializeGame()
 {
+    console.log(ship5cellAmount);
+    console.log(ship4cellAmount);
+    console.log(ship3cellAmount);
+    console.log(ship2cellAmount);
+
     cellsO.forEach(cell => cell.addEventListener("click", cellClicked));
     placeOpponentShips();
     placePlayerShips();
@@ -91,16 +104,22 @@ function generateShips(ship, isPlayer)
 }
 function placePlayerShips()
 {
-    generateShips(shipArray[0], true);
-    generateShips(shipArray[1], true);
-    generateShips(shipArray[1], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[2], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
-    generateShips(shipArray[3], true);
+    for (var i = 0; i < ship5cellAmount; i++)
+    {
+        generateShips(shipArray[0], true);
+    }
+    for (var i = 0; i < ship4cellAmount; i++)
+    {
+        generateShips(shipArray[1], true);
+    }
+    for (var i = 0; i < ship3cellAmount; i++)
+    {
+        generateShips(shipArray[2], true);
+    }
+    for (var i = 0; i < ship2cellAmount; i++)
+    {
+        generateShips(shipArray[3], true);
+    }
 
     cellsP.forEach(cell =>
         {
@@ -112,16 +131,22 @@ function placePlayerShips()
 }
 function placeOpponentShips()
 {
-    generateShips(shipArray[0], false);
-    generateShips(shipArray[1], false);
-    generateShips(shipArray[1], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[2], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
-    generateShips(shipArray[3], false);
+    for (var i = 0; i < ship5cellAmount; i++)
+    {
+        generateShips(shipArray[0], false);
+    }
+    for (var i = 0; i < ship4cellAmount; i++)
+    {
+        generateShips(shipArray[1], false);
+    }
+    for (var i = 0; i < ship3cellAmount; i++)
+    {
+        generateShips(shipArray[2], false);
+    }
+    for (var i = 0; i < ship2cellAmount; i++)
+    {
+        generateShips(shipArray[3], false);
+    }
 }
 function cellClicked()
 {
@@ -253,3 +278,4 @@ function restartGame()
 // FINISH LAST MOVEMENT FUNCTIONALITY
 // ADD POSSIBILITY TO CHOOSE HOW MANY SHIPS WILL BE ON THE BOARD (BEFORE STARTING THE GAME) - RESTART BUTTON SHOULD OPEN STARTING SCREEN (CHANGE CURRENT RESTART BUTTON TO "SHUFFLE AGAIN" BUTTON)
 // SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
+// ADD A LABEL FOR EACH GRID THAT DISPLAYS NUMBER OF SHIPS LEFT
