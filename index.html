@@ -12,8 +12,9 @@
     <div id="game">
         <h1>Battleship</h1>
     </div>
-
+    
     <div id="game">
+        <h1 class="battleshipText">Battleship</h1>
         <img class="indexImg" src="img/battleship.png" alt="battleship">
     </div>
 
@@ -40,10 +41,12 @@
             <option value="3">3</option>
             <option value="4">4</option>
         </select>
+        <br>
+        <span id="warning"></span>
     </div>
 
     <div id="game">
-        <a href="game.html"><button id="startBtn" class="gameBtn" onclick="getShipsAmount()">START</button></a>
+        <button id="startBtn" class="gameBtn" onclick="getShipsAmount()">START</button>
     </div>
 
     <script src="get_ships.js"></script>
