@@ -8,7 +8,7 @@ const shipsLeftOpponent = document.querySelector("#shipsLeftOpponent");
 const lastMove =
 {
     hit: false,
-    lastIndex: 100
+    lastIndex: 0,
 };
 
 const shipArray = 
@@ -199,11 +199,24 @@ function changePlayer()
 function opponentMove()
 {
     let oppShoot;
-    
+    let lastUp = lastMove.lastIndex - 10;
+    let lastRight = lastMove.lastIndex + 1;
+    let lastDown = lastMove.lastIndex + 10;
+    let lastLeft = lastMove.lastIndex - 1;
+    console.log(lastUp, lastDown, lastRight, lastLeft);
+
     if(!running)
     {
         return;
     }
+
+    // TODO - FINISH
+    if(lastMove.hit)
+    {
+        // if()
+    }
+
+
 
     do
     {
@@ -211,9 +224,13 @@ function opponentMove()
     }
     while(missedP.includes(oppShoot) || hitP.includes(oppShoot));
 
+    // if opponent hits
     if(shipsP.includes(oppShoot))
     {
         hitP.push(oppShoot);
+        lastMove.hit = true;
+        lastMove.lastIndex = Number(oppShoot);
+
         cellsP.forEach(cell =>
         {
             if(hitP.includes(cell.getAttribute("cellIndex")))
@@ -223,9 +240,13 @@ function opponentMove()
             }
         });
     }
+    // if opponent misses
     else
     {
         missedP.push(oppShoot);
+        lastMove.hit = false;
+        lastMove.lastIndex = Number(oppShoot);
+
         cellsP.forEach(cell =>
         {
             if(missedP.includes(cell.getAttribute("cellIndex")))
@@ -281,5 +302,4 @@ function restartGame()
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
 // SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
-// ADD A LABEL FOR EACH GRID THAT DISPLAYS NUMBER OF SHIPS LEFT
 // IMPROVE APPEARANCE (CSS)
