@@ -50,6 +50,10 @@ let missedO = [];           // missed cells on opponent grid
 let isPlayerTurn = true;    // is it player's turn
 let running = false;        // is game is running
 
+// game sounds
+var soundMissed;
+var soundHit;
+
 
 initializeGame();
 
@@ -63,6 +67,10 @@ function initializeGame()
     statusText.textContent = "You start";
     shipsLeftPlayer.textContent = ships;
     shipsLeftOpponent.textContent = ships;
+
+    soundMissed = new sound("sounds/missed.wav");
+    soundHit = new sound("sounds/hit.wav");
+
     running = true;
 }
 function generateShips(ship, isPlayer)
@@ -171,13 +179,15 @@ function updateCell(cell, index)
 {
     if(shipsO.includes(index))
     {
-        cell.style.backgroundColor = "#f44336";
+        soundHit.play();
         hitO.push(index);
+        cell.style.backgroundColor = "#f44336";
     }
     else
     {
-        cell.style.backgroundColor = "#000";
+        soundMissed.play();
         missedO.push(index);
+        cell.style.backgroundColor = "#000";
     }
     cell.style.cursor = "default";
 }
@@ -227,6 +237,7 @@ function opponentMove()
     // if opponent hits
     if(shipsP.includes(oppShoot))
     {
+        soundHit.play();
         hitP.push(oppShoot);
         lastMove.hit = true;
         lastMove.lastIndex = Number(oppShoot);
@@ -243,6 +254,7 @@ function opponentMove()
     // if opponent misses
     else
     {
+        soundMissed.play();
         missedP.push(oppShoot);
         lastMove.hit = false;
         lastMove.lastIndex = Number(oppShoot);
@@ -297,9 +309,30 @@ function restartGame()
     placePlayerShips();
     running = true;
 }
+function sound(src)
+{
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function()
+    {
+        this.sound.play();
+    }
+    this.stop = function()
+    {
+        this.sound.pause();
+    }
+}
+
 
 // TODO:
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
 // SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
 // IMPROVE APPEARANCE (CSS)
+// SET TIME INTERVALS BETWEEN MOVES, SHORTEN THE SOUNDS
+
+// sounds from mixkit.co
