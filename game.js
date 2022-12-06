@@ -202,8 +202,8 @@ function changePlayer()
     {
         statusText.textContent = "Wait for your turn";
         
-        let oppMoveTime;
-        oppMoveTime = setTimeout(opponentMove, 1000);
+        let wait;
+        wait = setTimeout(opponentMove, 1500);
     }
 }
 function opponentMove()
@@ -331,8 +331,6 @@ function sound(src)
 // TODO:
 // CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
-// SET ADDITIONAL TIMEOUT AND PROMPT A MESSAGE WHEN A SHIP IS HIT
 // IMPROVE APPEARANCE (CSS)
-// SET TIME INTERVALS BETWEEN MOVES, SHORTEN THE SOUNDS
 
 // sounds from mixkit.co
