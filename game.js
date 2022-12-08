@@ -10,7 +10,6 @@ const colorShip = '#5e7285';
 const colorHit = '#f44336';
 const colorMissed = '#e9ebf0';
 
-
 const lastMove =
 {
     hit: false,
