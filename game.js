@@ -5,6 +5,12 @@ const shuffleBtn = document.querySelector("#shuffleBtn");
 const shipsLeftPlayer = document.querySelector("#shipsLeftPlayer");
 const shipsLeftOpponent = document.querySelector("#shipsLeftOpponent");
 
+// ship colors
+const colorShip = '#5e7285';
+const colorHit = '#f44336';
+const colorMissed = '#e9ebf0';
+
+
 const lastMove =
 {
     hit: false,
@@ -132,7 +138,7 @@ function placePlayerShips()
         {
             if(shipsP.includes(cell.getAttribute("cellIndex")))
             {
-                cell.style.backgroundColor = "#394E62";
+                cell.style.backgroundColor = colorShip;
             }
         });
 }
@@ -181,13 +187,13 @@ function updateCell(cell, index)
     {
         soundHit.play();
         hitO.push(index);
-        cell.style.backgroundColor = "#f44336";
+        cell.style.backgroundColor = colorHit;
     }
     else
     {
         soundMissed.play();
         missedO.push(index);
-        cell.style.backgroundColor = "#000";
+        cell.style.backgroundColor = colorMissed;
     }
     cell.style.cursor = "default";
 }
@@ -247,7 +253,7 @@ function opponentMove()
             if(hitP.includes(cell.getAttribute("cellIndex")))
             {
                 // statusText.textContent = "Your ship has been hit!";
-                cell.style.backgroundColor = "#f44336";
+                cell.style.backgroundColor = colorHit;
             }
         });
     }
@@ -263,7 +269,7 @@ function opponentMove()
         {
             if(missedP.includes(cell.getAttribute("cellIndex")))
             {
-                cell.style.backgroundColor = "#000";
+                cell.style.backgroundColor = colorMissed;
             }
         });
     }
