@@ -301,8 +301,8 @@ function restartGame()
 {
     isPlayerTurn = true;
     statusText.textContent = "You start";
-    cellsP.forEach(cell => cell.style.backgroundColor = "#FFF")
-    cellsO.forEach(cell => cell.style.backgroundColor = "#FFF");
+    cellsP.forEach(cell => cell.style.backgroundColor = "transparent");
+    cellsO.forEach(cell => cell.style.backgroundColor = "transparent");
     cellsO.forEach(cell => cell.style.cursor = "pointer");
     hitP = [];
     hitO = [];
