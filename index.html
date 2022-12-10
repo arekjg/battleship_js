@@ -12,51 +12,20 @@
     <div id="game">
         <h1>Battleship</h1>
     </div>
-
+    
     <div id="game">
-        <p>Choose how many ships will be on board:</p>
-        Carrier (size: 5)
-        <select id="list-5cell" class="dropDown">
-            <option value="0">0</option>
-            <option value="1" selected="selected">1</option>
-        </select>
-        <br>
-        <br>
-        Battleship (size: 4)
-        <select id="list-4cell" class="dropDown">
-            <option value="0">0</option>
-            <option value="1" selected="selected">1</option>
-            <option value="2">2</option>
-        </select>
-        <br>
-        <br>
-        Destroyer (size: 3)
-        <select id="list-3cell" class="dropDown">
-            <option value="0">0</option>
-            <option value="1" selected="selected">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <br>
-        <br>
-        Patrol Boat (size: 2)
-        <select id="list-2cell" class="dropDown">
-            <option value="0">0</option>
-            <option value="1" selected="selected">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-        <br>
-        <br>
-        <span id="warning"></span>
+        <button id="instrBtn" class="gameBtn" onclick="showInstructions()">INSTRUCTIONS</button>
     </div>
-
+    
+    
     <div id="game">
-        <button id="startBtn" class="gameBtn" onclick="getShipsAmount()">START</button>
+        <span id="mainWindow"></span>
+    </div>
+    
+    <div id="game">
         <img src="img/battleship.png" alt="battleship">
     </div>
-
+    
     <script src="get_ships.js"></script>
 
 </body>
