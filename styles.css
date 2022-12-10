@@ -1,5 +1,5 @@
 div{
-    border: 2px solid;
+    /* border: 2px solid; */
     border-color: red;
     color: #fff;
 }
@@ -22,9 +22,10 @@ body{
     height: 0px;
     padding-bottom: 100%;
     border: 1px solid;
-    font-size: 150%;
-    cursor: pointer;
     text-align: center;
+}
+.cellO{
+    cursor: pointer;
 }
 #game{
     font-family: 'Courier New', Courier, monospace;
@@ -47,9 +48,9 @@ body{
 .gameplay{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 2%;
-    padding-left: 4%;
-    padding-right: 4%;
+    grid-gap: 5%;
+    padding-left: 9%;
+    padding-right: 9%;
     padding-bottom: 1%;
 }
 .gameBtn{
