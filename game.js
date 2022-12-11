@@ -10,11 +10,9 @@ const colorShip = '#5e7285';
 const colorHit = '#f44336';
 const colorMissed = '#e9ebf0';
 
-const lastMove =
-{
-    hit: false,
-    lastIndex: 0,
-};
+// last opponent's movement variables
+let lastMove = 0;
+let isLastMoveHit = false;
 
 const shipArray = 
 [
@@ -214,10 +212,10 @@ function changePlayer()
 function opponentMove()
 {
     let oppShoot;
-    let lastUp = lastMove.lastIndex - 10;
-    let lastRight = lastMove.lastIndex + 1;
-    let lastDown = lastMove.lastIndex + 10;
-    let lastLeft = lastMove.lastIndex - 1;
+    let lastUp = lastMove - 10;
+    let lastRight = lastMove + 1;
+    let lastDown = lastMove + 10;
+    let lastLeft = lastMove - 1;
     console.log(lastUp, lastDown, lastRight, lastLeft);
 
     if(!running)
@@ -226,7 +224,7 @@ function opponentMove()
     }
 
     // TODO - FINISH
-    if(lastMove.hit)
+    if(isLastMoveHit)
     {
         // if()
     }
@@ -244,14 +242,13 @@ function opponentMove()
     {
         soundHit.play();
         hitP.push(oppShoot);
-        lastMove.hit = true;
-        lastMove.lastIndex = Number(oppShoot);
+        isLastMoveHit = true;
+        lastMove = Number(oppShoot);
 
         cellsP.forEach(cell =>
         {
             if(hitP.includes(cell.getAttribute("cellIndex")))
             {
-                // statusText.textContent = "Your ship has been hit!";
                 cell.style.backgroundColor = colorHit;
             }
         });
@@ -261,8 +258,8 @@ function opponentMove()
     {
         soundMissed.play();
         missedP.push(oppShoot);
-        lastMove.hit = false;
-        lastMove.lastIndex = Number(oppShoot);
+        isLastMoveHit = false;
+        lastMove = Number(oppShoot);
 
         cellsP.forEach(cell =>
         {
@@ -334,8 +331,6 @@ function sound(src)
 
 
 // TODO:
-// CHECK THOROUGHLY GENERATING SHIPS FUNCTION
 // FINISH LAST MOVEMENT FUNCTIONALITY
-// IMPROVE APPEARANCE (CSS)
 
 // sounds from mixkit.co
