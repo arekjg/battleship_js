@@ -5,8 +5,8 @@ div{
 }
 h1{
     display: inline-block;
-	font-weight: bold;
-	text-shadow: 4px 5px 5px #436180;
+    font-weight: bold;
+    text-shadow: 4px 5px 5px #436180;
 }
 html, body{
     height: 97%;
@@ -54,36 +54,36 @@ body{
     padding-bottom: 1%;
 }
 .gameBtn{
-	box-shadow: inset 0px 0px 0px 0px #dcecfb;
-	background: linear-gradient(to bottom, #bddbfa 5%, #1c6bba 100%);
-	background-color: #bddbfa;
-	border-radius :6px;
-	border: 1px solid #64a3e3;
-	display: inline-block;
-	cursor: pointer;
-	color: #000;
-	font-family: Courier New;
-	font-size: 19px;
-	font-weight: bold;
-	padding: 5px 16px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #436180;
+    box-shadow: inset 0px 0px 0px 0px #dcecfb;
+    background: linear-gradient(to bottom, #bddbfa 5%, #1c6bba 100%);
+    background-color: #bddbfa;
+    border-radius :6px;
+    border: 1px solid #64a3e3;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;
+    font-family: Courier New;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 5px 16px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #436180;
 }
 .gameBtn:hover{
-	background: linear-gradient(to bottom, #1c6bba 5%, #bddbfa 100%);
-	background-color: #1c6bba;
+    background: linear-gradient(to bottom, #1c6bba 5%, #bddbfa 100%);
+    background-color: #1c6bba;
 }
 .gameBtn:active{
-	position: relative;
-	top: 1px;
+    position: relative;
+    top: 1px;
 }
 .dropDown{
     width: 40px;
-	font-size: 16px;
-	font-family: Courier New;
-	background-color: #bddbfa;
-	border-radius: 6px;
-	border: 1px solid #64a3e3;
+    font-size: 16px;
+    font-family: Courier New;
+    background-color: #bddbfa;
+    border-radius: 6px;
+    border: 1px solid #64a3e3;
 }
 .label{
     width: 100%;
