@@ -10,10 +10,6 @@ const colorShip = '#5e7285';
 const colorHit = '#f44336';
 const colorMissed = '#e9ebf0';
 
-// last opponent's movement variables
-let lastMove = 0;
-let isLastMoveHit = false;
-
 const shipArray = 
 [
     {
@@ -84,7 +80,7 @@ function generateShips(ship, isPlayer)
     let randomStart = Math.abs(Math.floor(Math.random() * 100 - (ship.directions[0].length * direction)));
 
     const isAtRightEdge = current.some(index => (randomStart + index) % 10 === 10);
-    const isAtLeftEdge = current.some(index => (randomStart + index + 1) % 10 === 0);
+    const isAtLeftEdge = current.some(index => (randomStart + index) % 10 === 9);
 
     // player's or opponent's ships
     if(isPlayer)
@@ -211,25 +207,10 @@ function changePlayer()
 }
 function opponentMove()
 {
-    let oppShoot;
-    let lastUp = lastMove - 10;
-    let lastRight = lastMove + 1;
-    let lastDown = lastMove + 10;
-    let lastLeft = lastMove - 1;
-    console.log(lastUp, lastDown, lastRight, lastLeft);
-
     if(!running)
     {
         return;
     }
-
-    // TODO - FINISH
-    if(isLastMoveHit)
-    {
-        // if()
-    }
-
-
 
     do
     {
@@ -328,9 +309,3 @@ function sound(src)
         this.sound.pause();
     }
 }
-
-
-// TODO:
-// FINISH LAST MOVEMENT FUNCTIONALITY
-
-// sounds from mixkit.co
