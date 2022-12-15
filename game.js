@@ -272,8 +272,6 @@ function checkWinner()
 
     shipsLeftPlayer.textContent = ships - hitP.length;
     shipsLeftOpponent.textContent = ships - hitO.length;
-
-
 }
 function restartGame()
 {
