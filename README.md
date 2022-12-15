@@ -3,7 +3,7 @@
 This is my final project of [Harvard's "CS50 Intrduction to Computer Science"](https://cs50.harvard.edu/x/2022/) course (2022 edition). It's a browser version of a popular board game - [Battleship](https://en.wikipedia.org/wiki/Battleship_(game)).  
   
 ### Video Demo:
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOVqER9wlrE/0.jpg)](https://www.youtube.com/watch?v=YOVqER9wlrE)
+[![Video Demo](https://img.youtube.com/vi/YOVqER9wlrE/0.jpg)](https://www.youtube.com/watch?v=YOVqER9wlrE)
   
 ### Rules
 This is a two-players game. Players make their moves in turns. Each has a 10x10 grid with ships placed on randomly (in traditional game you place them yourself, in this one they are placed for you).  
@@ -18,6 +18,21 @@ In this version of battleship there are 4 types of ships:
 - patrol boat of size 2  
 
 Before starting the game you can choose how many ships will be on each ocean grid.
+
+### Files and folders
+
+- **index.html**: Homepage of the project. Contains instructions, GitHub and YouTube links, lists to choose quantity of ships
+- **game.html**: Page with the main gameplay. Contains player's and opponent's ocean grids
+- **styles.css**: File with CSS code
+- **grid_opponent.js**: JavaScript file used to generate opponent's grid
+- **grid_player.js**: JavaScript file used to generate players's grid
+- **get_ships.js**: JavaScript file that contains functions responsible for: moving quantity of ships to the gameplay; prompting warning when user chooses 0 ships; showing and hiding instructions
+- **waves.js**: JavaScript file responsible for background music (waves noises)
+- **game.js**: Main JavaScript file responsible for entire game: game initializing, generating ships, painting player's ships on their grid, updating cells after click, opponent's movements, counting ships
+- **/img**: Catalog with all pictures used in project
+- **/screens:** Catalog with screenshots used in README
+- **/sounds:** Catalog with all sounds used in project (background noises, missed shot, hit)
+
 
 ### Main menu
 ![menu](/screens/s1.png)
