@@ -1,6 +1,6 @@
 # Battleship game
   
-This is my final project of [Harvard's "CS50 Intrduction to Computer Science"](https://cs50.harvard.edu/x/2022/) course (2022 edition). It's a browser version of a popular board game - [Battleship](https://en.wikipedia.org/wiki/Battleship_(game)).  
+This is my final project in the [Harvard's "CS50 Introduction to Computer Science"](https://cs50.harvard.edu/x/2022/) course (2022 edition). It's a browser version of a popular board game - [Battleship](https://en.wikipedia.org/wiki/Battleship_(game)).  
   
 ### Video Demo:
 [![Video Demo](https://img.youtube.com/vi/YOVqER9wlrE/0.jpg)](https://www.youtube.com/watch?v=YOVqER9wlrE)
